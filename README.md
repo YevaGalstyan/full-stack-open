@@ -6,6 +6,6 @@ This repository contains solutions for the exercises of the [Full Stack course](
 
 ### Part 0: Fundamentals of Web Apps
 
-- [0.4: New Note Diagram](./part0/new_note_diagram.md)
-- [0.5: SPA Diagram](./part0/single_page_app_diagram.md)
-- [0.6: SPA New Note Diagram](./part0/new_note_spa_diagram.md)
+- [0.4: New Note Diagram](./part_0/new_note_diagram.md)
+- [0.5: SPA Diagram](./part_0/single_page_app_diagram.md)
+- [0.6: SPA New Note Diagram](./part_0/new_note_spa_diagram.md)

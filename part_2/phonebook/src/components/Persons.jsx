@@ -1,10 +1,13 @@
-const Persons = ({ persons }) => {
+const Persons = ({ persons, onDelete }) => {
     return (
-        <>
+        <div style={{display: 'flex', gap: 15, flexDirection: 'column'}}>
             {persons.map(({ name, number }) =>
-                <p key={name}>{name} {number}</p>
+                <div key={name} style={{display: 'flex', gap: 5}}>
+                    <span key={name}>{name} {number}</span>
+                    <button onClick={() => onDelete(name)}>Delete</button>
+                </div>
             )}
-        </>
+        </div>
     )
 }
 

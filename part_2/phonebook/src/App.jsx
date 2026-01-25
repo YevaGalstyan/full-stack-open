@@ -6,7 +6,7 @@ import phonebookService from './services/phonebookService'
 import Notification from './components/Notification'
 
 const App = () => {
-  const [persons, setPersons] = useState([]);
+  const [persons, setPersons] = useState(null);
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
   const [notification, setNotification] = useState(null)

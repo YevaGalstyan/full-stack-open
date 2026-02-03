@@ -18,6 +18,10 @@ This repository contains solutions for the exercises of the [Full Stack course](
 
 ### Part 2: Communicating with server
 
-- [Course Information](./part_1/course_info)
-- [Phonebook](./part_1/anecdotes)
-- [Countries](./part_1/unicafe/)
+- [Course Information](./part_2/course_info)
+- [Phonebook](./part_2/phonebook)
+- [Countries](./part_2/countries/)
+
+### Part 3: Programming a server with NodeJS and Express
+
+- [Phonebook Backend](./part_3/phonebook-be)

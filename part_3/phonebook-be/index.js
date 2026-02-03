@@ -2,13 +2,12 @@
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
-const path = require('path')
 
 const app = express()
 
 app.use(cors())
 app.use(express.json())
-app.use(express.static(path.join(__dirname, 'dist')))
+app.use(express.static('dist'))
 app.use(
   morgan(':method :url :status :res[content-length] - :response-time ms :body')
 )
@@ -39,10 +38,6 @@ let persons = [
         number: "39-23-6423122"
     }
 ]
-
-app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'))
-})
 
 app.get('/info', (request, response) => {
     response.send(`

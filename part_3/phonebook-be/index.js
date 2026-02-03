@@ -1,20 +1,22 @@
 
+require('dotenv').config()
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 const path = require('path')
+const Phonebook = require('./models/Phonebook')
 
 const app = express()
 
 app.use(cors())
 app.use(express.json())
-app.use(express.static(path.join(__dirname, 'dist')))
+app.use(express.static('dist'))
 app.use(
-  morgan(':method :url :status :res[content-length] - :response-time ms :body')
+    morgan(':method :url :status :res[content-length] - :response-time ms :body')
 )
 
 morgan.token('body', (req) => {
-  return JSON.stringify(req.body)
+    return JSON.stringify(req.body)
 })
 
 let persons = [
@@ -40,6 +42,7 @@ let persons = [
     }
 ]
 
+
 app.get('/info', (request, response) => {
     response.send(`
     <span>Phonebook has info for ${persons.length} people</span><br/>
@@ -48,7 +51,9 @@ app.get('/info', (request, response) => {
 })
 
 app.get('/api/persons', (request, response) => {
-    response.json(persons)
+    Phonebook.find({}).then(item => {
+        response.json(item)
+    })
 })
 
 app.get('/api/persons/:id', (request, response) => {
@@ -82,15 +87,14 @@ app.post('/api/persons', (request, response) => {
         })
     }
 
-    const person = {
+    const person = new Phonebook({
         name: body.name,
         number: String(body.number),
-        id: generateId(),
-    }
+    })
 
-    persons = persons.concat(person)
-
-    response.json(persons)
+    person.save().then(savedPerson => {
+        response.json(savedPerson)
+    })
 })
 
 app.delete('/api/persons/:id', (request, response) => {
@@ -100,11 +104,7 @@ app.delete('/api/persons/:id', (request, response) => {
     response.status(204).end()
 })
 
-app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'))
-})
-
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
